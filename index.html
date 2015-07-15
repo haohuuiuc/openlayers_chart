@@ -4,9 +4,30 @@
 Openlayers with Google Chart
 </title>
 <head>
-<script src="http://openlayers.org/api/OpenLayers.js"></script>
+	<script src="http://dev.openlayers.org/OpenLayers.js"></script>
+	<script src="oc.js" defer="defer"></script>
+	<link rel="stylesheet" href="http://dev.openlayers.org/examples/style.css" type="text/css">
+	<link rel="stylesheet" href="http://dev.openlayers.org/theme/default/style.css" type="text/css">
+	<style type="text/css">
+            html, body, #map {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            #text {
+                position: absolute;
+                bottom: 1em;
+                left: 1em;
+                width: 512px;
+                z-index: 20000;
+                background-color: white;
+                padding: 0 0.5em 0.5em 0.5em;
+            }
+        </style>
 </head>
-<body>
-Hello, GIS!
+<body onload="init()">
+	<div id="map"></div>
 </body>
+
 </html>
