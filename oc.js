@@ -46,34 +46,34 @@ This function generalize the spatial data chart creation based on google chart a
 */
 function createBarChart(geojson_file, attr, chs_a, chds_t, chbh_t, chco_t){
 	var context = {
-        getChartURL: function(feature) {
-            var values = "";
-            attr.forEach(function(item, index){
-            	if(index != attr.length - 1)
-            		values += feature.attributes[item] + ',';
-            	else
-            		values += feature.attributes[item]
-            });
-            
-            var charturl = 'http://chart.apis.google.com/chart?cht=bvg&chs=' + chs_a[0] + 'x' + chs_a[1] + '&chds=' + chds_t + '&chbh=' + chbh_t + '&chd=t:' + values + '&chco=' + chco_t  + '&chf=bg,s,ffffff00';
-            
-            // hide x,y axis
-            charturl += '&chxt=x,y&chxs=0,000000,10,0,_,000000|1,000000,10,0,_,000000&chxl=0%3a||1%3a|';
+		getChartURL: function(feature) {
+			var values = "";
+			attr.forEach(function(item, index){
+				if(index != attr.length - 1)
+					values += feature.attributes[item] + ',';
+				else
+					values += feature.attributes[item]
+			});
 
-            return charturl;
-        }
-    };
+			var charturl = 'http://chart.apis.google.com/chart?cht=bvg&chs=' + chs_a[0] + 'x' + chs_a[1] + '&chds=' + chds_t + '&chbh=' + chbh_t + '&chd=t:' + values + '&chco=' + chco_t  + '&chf=bg,s,ffffff00';
 
-    var template = {
-        fillOpacity: 1.0,
-        externalGraphic: "${getChartURL}",
-        graphicWidth: chs_a[0],
-        graphicHeight: chs_a[1],
-        strokeWidth: 0
-    };
+			// hide x,y axis
+			charturl += '&chxt=x,y&chxs=0,000000,10,0,_,000000|1,000000,10,0,_,000000&chxl=0%3a||1%3a|';
 
-    var style = new OpenLayers.Style(template, {context: context});
-    var styleMap = new OpenLayers.StyleMap({'default': style, 'select': {fillOpacity: 0.7}});
+			return charturl;
+		}
+	};
+
+	var template = {
+		fillOpacity: 1.0,
+		externalGraphic: "${getChartURL}",
+		graphicWidth: chs_a[0],
+		graphicHeight: chs_a[1],
+		strokeWidth: 0
+	};
+
+	var style = new OpenLayers.Style(template, {context: context});
+	var styleMap = new OpenLayers.StyleMap({'default': style, 'select': {fillOpacity: 0.7}});
 
 	var vectors = new OpenLayers.Layer.GML("Siting Frenquency",
 	 "site.json", {
