@@ -19,12 +19,33 @@ function init(){
 
 	var vector = createBarChart("site.json", ['Supply','CSP','Biorefinery'], [30,40], "0,1", "a,0", "FF0000|00FF00|0000FF");
 	map.addLayer(vector);
+
+	var options = {
+		onSelect: function(r){
+			//construct popup message
+			var msg = "<strong>" + r.attributes["Name"] + "</strong><br/>";
+            msg += "Supply siting prob: " + (100*r.attributes["Supply"]).toFixed(2) + "%<br/>";
+            msg += "CSP siting prob: " + (100*r.attributes["CSP"]).toFixed(2) + "%<br/>";
+            msg += "Biorefinery siting prob: " + (100*r.attributes["Biorefinery"]).toFixed(2) + "%<br/>";
+
+			var popup = new OpenLayers.Popup("chicken",
+				new OpenLayers.LonLat(r.geometry.x, r.geometry.y),
+				new OpenLayers.Size(200,120),
+				msg,
+				true);
+			map.addPopup(popup);
+		}
+	}
+	var select = new OpenLayers.Control.SelectFeature(vector, options);
+	map.addControl(select);
+	select.activate();
+	
 }
 /*
 This function generalize the spatial data chart creation based on google chart api
 */
 function createBarChart(geojson_file, attr, chs_a, chds_t, chbh_t, chco_t){
-	 var context = {
+	var context = {
         getChartURL: function(feature) {
             var values = "";
             attr.forEach(function(item, index){
