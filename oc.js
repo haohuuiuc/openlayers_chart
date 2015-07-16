@@ -24,9 +24,9 @@ function init(){
 		onSelect: function(r){
 			//construct popup message
 			var msg = "<strong>" + r.attributes["Name"] + "</strong><br/>";
-            msg += "Supply siting prob: " + (100*r.attributes["Supply"]).toFixed(2) + "%<br/>";
-            msg += "CSP siting prob: " + (100*r.attributes["CSP"]).toFixed(2) + "%<br/>";
-            msg += "Biorefinery siting prob: " + (100*r.attributes["Biorefinery"]).toFixed(2) + "%<br/>";
+			msg += "Supply siting prob: " + (100*r.attributes["Supply"]).toFixed(2) + "%<br/>";
+			msg += "CSP siting prob: " + (100*r.attributes["CSP"]).toFixed(2) + "%<br/>";
+			msg += "Biorefinery siting prob: " + (100*r.attributes["Biorefinery"]).toFixed(2) + "%<br/>";
 
 			var popup = new OpenLayers.Popup("chicken",
 				new OpenLayers.LonLat(r.geometry.x, r.geometry.y),
